@@ -14,7 +14,7 @@ class CreateResEventos extends Migration
     public function up()
     {
         Schema::create('res_eventos', function (Blueprint $table) {
-            $table->integer('id_evento')->primary();
+            $table->integer('id_evento')->autoIncrement();
             $table->string('nombre');
             $table->string('ciudad');
             $table->string('direccion');

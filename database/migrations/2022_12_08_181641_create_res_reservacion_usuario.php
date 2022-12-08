@@ -14,12 +14,11 @@ class CreateResReservacionUsuario extends Migration
     public function up()
     {
         Schema::create('res_reservacion_usuario', function (Blueprint $table) {
-            $table->integer('id_reservacion');
-            $table->string('cedula');
+            $table->integer('id_reservacion')->autoIncrement();
+            $table->string('cedula')->primary();
             $table->integer('boleta_id');
             $table->dateTime('fecha_reservacion');
             $table->integer('estado');
-            $table->primary(['id_reservacion', 'cedula']);
             $table->foreign('cedula')->references('cedula')->on('res_usuarios');
             $table->foreign('boleta_id')->references('id_boleta')->on('res_boletas');
         });

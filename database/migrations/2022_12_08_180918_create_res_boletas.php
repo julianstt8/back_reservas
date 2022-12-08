@@ -14,7 +14,7 @@ class CreateResBoletas extends Migration
     public function up()
     {
         Schema::create('res_boletas', function (Blueprint $table) {
-            $table->integer('id_boleta')->primary();
+            $table->integer('id_boleta')->autoIncrement();
             $table->integer('id_evento');
             $table->integer('cantidad_boletas');
             $table->integer('cantidad_boletas_disponibles');

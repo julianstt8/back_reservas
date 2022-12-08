@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EventModel;
 use App\Models\BoletasModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class EventController extends Controller
 {
@@ -50,12 +51,13 @@ class EventController extends Controller
     }
 
     /** Eliminar evento */
-    public function eliminarEvento()
+    public function deleteEvent(Request $request)
     {
-    }
-
-    /** Modificar evento ya creado */
-    public function editarEvento()
-    {
+        try {
+            $res = EventModel::find($request->id)->delete();
+            return response()->json(['status' => 1, 'message' => $res]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 0, 'message' => $th]);
+        }
     }
 }

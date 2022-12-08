@@ -35,4 +35,5 @@ Route::group(['prefix' => 'events'], function ($router) {
     Route::post('getReserve', [ReservaController::class, 'getReserve']);
     Route::get('getEvents', [EventController::class, 'getEvents']);
     Route::post('addEvent', [EventController::class, 'addEvent']);
+    Route::post('deleteEvent', [EventController::class, 'deleteEvent']);
 });
