@@ -17,6 +17,8 @@ Composer version 2.3.10
 
 CMD - composer install
 
+composer remove laravel/sanctum
+
 ## Levantar servidor
 
 Se debe cambiar la IP `192.168.80.11` que corresponde a la mía en los environment por la IP correspondiente a su PC (abrir CMD, escribir ipconfig y te arrojara la ip de su pc).

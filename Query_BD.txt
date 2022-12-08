@@ -1,68 +1,47 @@
-//Creacion tabla usuarios
-CREATE TABLE reservaBoletas.res_usuarios (
-	cedula varchar(100) NOT NULL,
-	nombre varchar(100) NOT NULL,
-	apellido varchar(100) NOT NULL,
-	correo varchar(100) NOT NULL,
-	fecha_creacion DATETIME NOT NULL,
-	tipo_usuario INT NOT NULL,
-	contrasena varchar(100) NOT NULL
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8
-COLLATE=utf8_general_ci;
-ALTER TABLE reservaBoletas.res_usuarios ADD CONSTRAINT res_usuarios_pk PRIMARY KEY (cedula);
+//Crear tabla res_usuarios
+CREATE TABLE `res_usuarios` (
+  `cedula` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `apellido` varchar(100) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
+  `tipo_usuario` int(11) NOT NULL,
+  `contrasena` varchar(100) NOT NULL,
+  PRIMARY KEY (`cedula`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+//Crear tabla eventos
+CREATE TABLE `res_eventos` (
+  `id_evento` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `horario` date NOT NULL,
+  `artistas` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_evento`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
-//Creacion tabla eventos
-CREATE TABLE reservaBoletas.res_eventos (
-	id_evento INT auto_increment NOT NULL,
-	nombre varchar(100) NOT NULL,
-	ciudad varchar(100) NOT NULL,
-	direccion varchar(100) NOT NULL,
-	horario date NOT NULL,
-	artistas varchar(100) NOT NULL,
-	CONSTRAINT res_eventos_pk PRIMARY KEY (id_evento)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8
-COLLATE=utf8_general_ci;
+//Crear tabla res_boletas
+CREATE TABLE `res_boletas` (
+  `id_boleta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_evento` int(11) NOT NULL,
+  `cantidad_boletas` int(11) NOT NULL,
+  `cantidad_boletas_disponibles` int(11) NOT NULL,
+  PRIMARY KEY (`id_boleta`),
+  KEY `res_boletas_FK` (`id_evento`),
+  CONSTRAINT `res_boletas_FK` FOREIGN KEY (`id_evento`) REFERENCES `res_eventos` (`id_evento`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-//Creacion tabla boletas
-CREATE TABLE reservaBoletas.res_boletas (
-	id_boleta INT auto_increment NOT NULL,
-	id_evento INT NOT NULL,
-	cantidad_boletas INT NOT NULL,
-	cantidad_boletas_disponibles INT NOT NULL,
-	CONSTRAINT res_boletas_pk PRIMARY KEY (id_boleta)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8
-COLLATE=utf8_general_ci;
-
-
-//Creacion tabla reservacion_usuario
-CREATE TABLE reservaBoletas.res_reservacion_usuario (
-	id_reservacion INT auto_increment NOT NULL,
-	cedula varchar(100) NOT NULL,
-	boleta_id INT NOT NULL,
-	fecha_reservacion DATETIME NOT NULL,
-	estado INT NOT NULL,
-	CONSTRAINT res_reservacion_usuario_pk PRIMARY KEY (id_reservacion)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8
-COLLATE=utf8_general_ci;
-
-//LLaves foraneas
-ALTER TABLE `reservaboletas`.`res_usuarios` 
-ADD CONSTRAINT `FK_usuarios_reservacion`
-  FOREIGN KEY (`cedula`)
-  REFERENCES `reservaboletas`.`res_reservacion_usuario` (`cedula`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
-
-ALTER TABLE reservaBoletas.res_reservacion_usuario ADD CONSTRAINT res_reservacion_usuario_FK_1 FOREIGN KEY (boleta_id) REFERENCES reservaBoletas.res_boletas(id_boleta);
-
-ALTER TABLE reservaBoletas.res_boletas ADD CONSTRAINT res_boletas_FK FOREIGN KEY (id_evento) REFERENCES reservaBoletas.res_eventos(id_evento);
+//Crear tabla res_reservacion_usuario
+CREATE TABLE `res_reservacion_usuario` (
+  `id_reservacion` int(11) NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(100) NOT NULL,
+  `boleta_id` int(11) NOT NULL,
+  `fecha_reservacion` datetime NOT NULL,
+  `estado` int(11) NOT NULL,
+  PRIMARY KEY (`id_reservacion`,`cedula`),
+  KEY `res_reservacion_usuario_FK` (`cedula`),
+  KEY `res_reservacion_usuario_FK_1` (`boleta_id`),
+  CONSTRAINT `res_reservacion_usuario_FK` FOREIGN KEY (`cedula`) REFERENCES `res_usuarios` (`cedula`),
+  CONSTRAINT `res_reservacion_usuario_FK_1` FOREIGN KEY (`boleta_id`) REFERENCES `res_boletas` (`id_boleta`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
