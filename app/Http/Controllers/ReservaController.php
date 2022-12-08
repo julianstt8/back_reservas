@@ -51,8 +51,10 @@ class ReservaController extends Controller
     public function getAllReserve()
     {
         try {
-            $response =  ReservaModel::join('res_boletas', 'res_reservacion_usuario.boleta_id', '=', 'res_boletas.id_boleta')
+            $response =  ReservaModel::select('res_usuarios.nombre as nombre_usuario', 'res_usuarios.*', 'res_boletas.*', 'res_eventos.*', 'res_reservacion_usuario.*')
+                ->join('res_boletas', 'res_reservacion_usuario.boleta_id', '=', 'res_boletas.id_boleta')
                 ->join('res_eventos', 'res_boletas.id_evento', '=', 'res_eventos.id_evento')
+                ->join('res_usuarios', 'res_reservacion_usuario.cedula', '=', 'res_usuarios.cedula')
                 ->orderBy('fecha_reservacion', 'ASC')
                 ->get();
             return response()->json(['status' => 1, 'message' => $response]);
