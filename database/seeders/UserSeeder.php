@@ -14,5 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('res_usuarios')->insert([
+            'cedula' => '1',
+            'nombre' => 'Administrador',
+            'apellido' => 'Reserva',
+            'correo' => 'administrador@gmail.com',
+            'fecha_creacion' => now(),
+            'tipo_usuario' => 1,
+            'contrasena' => 'administrador'
+        ]);
     }
 }

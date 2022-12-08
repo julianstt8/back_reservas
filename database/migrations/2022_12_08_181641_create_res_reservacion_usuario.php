@@ -17,7 +17,7 @@ class CreateResReservacionUsuario extends Migration
             $table->integer('id_reservacion');
             $table->string('cedula');
             $table->integer('boleta_id');
-            $table->dateTimeTz('fecha_reservacion');
+            $table->dateTime('fecha_reservacion');
             $table->integer('estado');
             $table->primary(['id_reservacion', 'cedula']);
             $table->foreign('cedula')->references('cedula')->on('res_usuarios');

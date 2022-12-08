@@ -18,7 +18,7 @@ class CreateResUsuarios extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('correo');
-            $table->dateTimeTz('fecha_creacion');
+            $table->dateTime('fecha_creacion');
             $table->integer('tipo_usuario');
             $table->string('contrasena');
         });
