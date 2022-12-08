@@ -49,15 +49,4 @@ class EventController extends Controller
             return response()->json(['status' => 0, 'message' => $th]);
         }
     }
-
-    /** Eliminar evento */
-    public function deleteEvent(Request $request)
-    {
-        try {
-            $res = EventModel::find($request->id)->delete();
-            return response()->json(['status' => 1, 'message' => $res]);
-        } catch (\Throwable $th) {
-            return response()->json(['status' => 0, 'message' => $th]);
-        }
-    }
 }
