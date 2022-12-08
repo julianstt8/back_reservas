@@ -2,7 +2,7 @@
 
 # Query base de datos
 
-El query se encuentra en la raìz del back como `dump-reservaBoletas` ó `QueryBD.txt`, MySQL.
+Se puede realizar la migracion (php aritsan migrate) ó ejecutar el query se encuentra en la raìz del back como `dump-reservaBoletas` ó `QueryBD.txt`, MySQL.
 
 # Clonar repositorio
 
