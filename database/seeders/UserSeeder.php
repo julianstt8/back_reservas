@@ -23,5 +23,15 @@ class UserSeeder extends Seeder
             'tipo_usuario' => 1,
             'contrasena' => 'administrador'
         ]);
+
+        DB::table('res_usuarios')->insert([
+            'cedula' => '2',
+            'nombre' => 'Comprador',
+            'apellido' => 'Reserva',
+            'correo' => 'comprador@gmail.com',
+            'fecha_creacion' => now(),
+            'tipo_usuario' => 0,
+            'contrasena' => 'comprador'
+        ]);
     }
 }
