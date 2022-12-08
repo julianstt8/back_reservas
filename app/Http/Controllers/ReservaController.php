@@ -11,6 +11,7 @@ class ReservaController extends Controller
     /** Reservamos la boleta */
     public function addReserve(Request $request)
     {
+
         try {
             $shared = new sharedFunctionController();
             if ($shared->cantidadBoletasDisponibles($request->id_boleta) > 0) {
