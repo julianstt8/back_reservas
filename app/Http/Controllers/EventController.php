@@ -58,17 +58,4 @@ class EventController extends Controller
     public function editarEvento()
     {
     }
-
-
-
-    /** Se actualiza el estado de la reserva */
-    public function actualizarEstadoReserva()
-    {
-    }
-
-
-
-    public function traerReservaPorUsuario($cedula)
-    {
-    }
 }

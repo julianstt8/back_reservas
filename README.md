@@ -6,7 +6,7 @@ El query se encuentra en la raìz del back como `QueryBD.txt`, MySQL.
 
 # Clonar repositorio
 
-git clone --branch f_julian https://github.com/julianstt8/inxaitBack.git
+git clone --branch f_julian https://github.com/julianstt8/front_reservas.git
 
 # Versiones usadas en el proyecto
 
