@@ -62,13 +62,14 @@ CREATE TABLE `res_reservacion_usuario` (
   `id_reservacion` int(11) NOT NULL AUTO_INCREMENT,
   `cedula` varchar(100) NOT NULL,
   `boleta_id` int(11) NOT NULL,
-  `estado` int(11) NOT NULL COMMENT '0.- Sin confirmar, 1.- Confirmado',
   `fecha_reservacion` datetime NOT NULL,
-  PRIMARY KEY (`id_reservacion`),
-  KEY `res_reservacion_usuario_FK_1` (`boleta_id`),
+  `estado` int(11) NOT NULL,
+  PRIMARY KEY (`id_reservacion`,`cedula`),
   KEY `res_reservacion_usuario_FK` (`cedula`),
+  KEY `res_reservacion_usuario_FK_1` (`boleta_id`),
+  CONSTRAINT `res_reservacion_usuario_FK` FOREIGN KEY (`cedula`) REFERENCES `res_usuarios` (`cedula`),
   CONSTRAINT `res_reservacion_usuario_FK_1` FOREIGN KEY (`boleta_id`) REFERENCES `res_boletas` (`id_boleta`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,8 +87,7 @@ CREATE TABLE `res_usuarios` (
   `fecha_creacion` datetime NOT NULL,
   `tipo_usuario` int(11) NOT NULL,
   `contrasena` varchar(100) NOT NULL,
-  PRIMARY KEY (`cedula`),
-  CONSTRAINT `FK_usuarios_reservacion` FOREIGN KEY (`cedula`) REFERENCES `res_reservacion_usuario` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`cedula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,4 +104,4 @@ CREATE TABLE `res_usuarios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-08  4:26:31
+-- Dump completed on 2022-12-08 10:17:31

@@ -29,6 +29,8 @@ Route::group(['prefix' => 'users'], function ($router) {
 });
 
 Route::group(['prefix' => 'events'], function ($router) {
+    Route::post('setStatusReserve', [ReservaController::class, 'setStatusReserve']);
+    Route::get('getAllReserve', [ReservaController::class, 'getAllReserve']);
     Route::post('addReserve', [ReservaController::class, 'addReserve']);
     Route::post('getReserve', [ReservaController::class, 'getReserve']);
     Route::get('getEvents', [EventController::class, 'getEvents']);

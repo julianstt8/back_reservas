@@ -19,7 +19,7 @@ class UserController extends Controller
                     'apellido' => $request->apellido,
                     'correo' => $request->correo,
                     'fecha_creacion' => now(),
-                    'tipo_usuario' => $request->tipo_usuario,
+                    'tipo_usuario' => $request->tipo_usuario ? $request->tipo_usuario : 0,
                     'contrasena' => $request->contrasena
                 ];
                 $response = UserModel::insert($insert);
