@@ -15,7 +15,7 @@ class CreateResReservacionUsuario extends Migration
     {
         Schema::create('res_reservacion_usuario', function (Blueprint $table) {
             $table->integer('id_reservacion')->autoIncrement();
-            $table->string('cedula')->primary();
+            $table->string('cedula');
             $table->integer('boleta_id');
             $table->dateTime('fecha_reservacion');
             $table->integer('estado');
